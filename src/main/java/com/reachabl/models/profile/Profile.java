@@ -3,13 +3,10 @@ package com.reachabl.models.profile;
 
 import com.reachabl.models.user.User;
 import com.reachabl.models.user_status.UserStatus;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.Instant;
 import java.time.LocalDate;
 
 
@@ -18,10 +15,9 @@ public class Profile {
     @Id
     private String id;
 
-    private String firstName;
+    private String fullName;
 
-    private String lastName;
-
+    private String nickName;
 
     private LocalDate birthDate;
 
@@ -36,15 +32,11 @@ public class Profile {
     @DBRef
     private User user;
 
-    @CreatedDate
-    private Instant createdAt;
+    public Profile(String fullName, String nickName, LocalDate birthDate,
+                   String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user) {
 
-    @LastModifiedDate
-    private Instant updatedAt;
-
-    public Profile(String firstName, String lastName, LocalDate birthDate, String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
+        this.nickName = nickName;
         this.birthDate = birthDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -52,6 +44,7 @@ public class Profile {
         this.userStatus = userStatus;
         this.user = user;
     }
+
 
     public String getId() {
         return id;
@@ -61,23 +54,21 @@ public class Profile {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
-
-
 
     public LocalDate getBirthDate() {
         return birthDate;
@@ -125,21 +116,5 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
