@@ -1,6 +1,7 @@
 package com.reachabl.models.profile;
 
-import com.reachabl.user_service.models.user.User;
+
+import com.reachabl.models.user.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
