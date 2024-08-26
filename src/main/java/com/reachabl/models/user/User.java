@@ -21,7 +21,7 @@ public class User implements UserDetails {
     @NotBlank
     @Size(max = 50)
     @Email
-    private String email;
+    private String userName;
 
     @NotBlank
     @Size(max = 120)
@@ -36,7 +36,7 @@ public class User implements UserDetails {
     }
 
     public User(String email, String password) {
-        this.email = email;
+        this.userName = email;
         this.password = password;
     }
 
@@ -75,16 +75,16 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return userName;
     }
 
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override
