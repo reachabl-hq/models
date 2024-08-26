@@ -5,8 +5,8 @@ public class SignUpPayload {
 
     private String password;
 
-    public SignUpPayload(String email, String password) {
-        this.userName = email;
+    public SignUpPayload(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
