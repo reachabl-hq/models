@@ -26,12 +26,22 @@ public class Whiteboard {
 
     private Map<String, Object> snapShot;
 
-    public Whiteboard( Set<User> members, String title, String inviteMessage, Map<String, Object> snapShot) {
+    public Whiteboard() {
+    }
 
+    public Whiteboard(Set<User> members, String title, String inviteMessage, Map<String, Object> snapShot) {
         this.members = members;
         this.title = title;
         this.inviteMessage = inviteMessage;
         this.snapShot = snapShot;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public User getCreator() {
