@@ -15,9 +15,9 @@ public class Profile {
     @Id
     private String id;
 
-    private String fullName;
+    private String firstName;
 
-    private String nickName;
+    private String lastName;
 
     private LocalDate birthDate;
 
@@ -32,11 +32,11 @@ public class Profile {
     @DBRef
     private User user;
 
-    public Profile(String fullName, String nickName, LocalDate birthDate,
+    public Profile(String firstName, String lastName, LocalDate birthDate,
                    String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user) {
 
-        this.fullName = fullName;
-        this.nickName = nickName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.birthDate = birthDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -54,20 +54,20 @@ public class Profile {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDate getBirthDate() {
