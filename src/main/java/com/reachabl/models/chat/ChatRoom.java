@@ -1,5 +1,6 @@
 package com.reachabl.models.chat;
 
+import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -18,8 +19,13 @@ public class ChatRoom {
     @DBRef
     private ChatMessage last;
 
+    @DBRef
+    private Profile creator;
+
     @Transient
     private boolean unread;
+
+    private String channelName;
 
     public String getId() {
         return id;
@@ -51,5 +57,21 @@ public class ChatRoom {
 
     public void setUnread(boolean unread) {
         this.unread = unread;
+    }
+
+    public Profile getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Profile creator) {
+        this.creator = creator;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }
