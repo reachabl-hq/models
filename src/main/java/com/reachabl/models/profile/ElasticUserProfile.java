@@ -1,17 +1,13 @@
 package com.reachabl.models.profile;
-
-
-import com.reachabl.models.user.User;
 import com.reachabl.models.user_status.UserStatus;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDate;
 
 
-@Document("profiles")
-public class Profile {
+@Document(indexName = "profiles")
+public class ElasticUserProfile {
     @Id
     private String id;
 
@@ -19,7 +15,6 @@ public class Profile {
 
     private String lastName;
 
-    private LocalDate birthDate;
 
     private String email;
 
@@ -29,22 +24,22 @@ public class Profile {
 
     private UserStatus userStatus;
 
-    @DBRef
-    private User user;
+    public ElasticUserProfile(String id) {
+        this.id = id;
+    }
 
-    public Profile(String firstName, String lastName, LocalDate birthDate,
-                   String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user) {
-
+    public ElasticUserProfile(String id, String firstName, String lastName,  String email, String phoneNumber, String imageUrl, UserStatus userStatus) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.imageUrl = imageUrl;
         this.userStatus = userStatus;
-        this.user = user;
     }
 
+    public ElasticUserProfile() {
+    }
 
     public String getId() {
         return id;
@@ -68,14 +63,6 @@ public class Profile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getEmail() {
@@ -108,13 +95,5 @@ public class Profile {
 
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
