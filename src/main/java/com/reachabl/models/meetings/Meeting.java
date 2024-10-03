@@ -6,13 +6,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Document("meetings")
-
 public class Meeting {
 
     @Id
@@ -26,7 +27,7 @@ public class Meeting {
 
     private ZoneId zoneId ;
 
-    private LocalDate time;
+    private Date time;
 
     private MeetingTime meetingTime;
 
@@ -39,10 +40,30 @@ public class Meeting {
     @JsonProperty(required = false)
     private AbstractRecurringMeeting recurringMeeting;
 
-    private LocalTime reminder;
+    private Duration reminder;
 
     @JsonProperty(required = false)
     private List<String> files;
+
+    private String roomCode ;
+
+    public Meeting() {
+    }
+
+    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, Date time, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files,String roomCode ) {
+        this.topic = topic;
+        this.description = description;
+        this.meetingType = meetingType;
+        this.zoneId = zoneId;
+        this.time = time;
+        this.meetingTime = meetingTime;
+        this.creator = creator;
+        this.participants = participants;
+        this.recurringMeeting = recurringMeeting;
+        this.reminder = reminder;
+        this.files = files;
+        this.roomCode = roomCode;
+    }
 
     public String getId() {
         return id;
@@ -84,11 +105,11 @@ public class Meeting {
         this.zoneId = zoneId;
     }
 
-    public LocalDate getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(LocalDate time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -124,11 +145,11 @@ public class Meeting {
         this.recurringMeeting = recurringMeeting;
     }
 
-    public LocalTime getReminder() {
+    public Duration getReminder() {
         return reminder;
     }
 
-    public void setReminder(LocalTime reminder) {
+    public void setReminder(Duration reminder) {
         this.reminder = reminder;
     }
 
@@ -138,5 +159,13 @@ public class Meeting {
 
     public void setFiles(List<String> files) {
         this.files = files;
+    }
+
+    public String getRoomCode() {
+        return roomCode;
+    }
+
+    public void setRoomCode(String roomCode) {
+        this.roomCode = roomCode;
     }
 }
