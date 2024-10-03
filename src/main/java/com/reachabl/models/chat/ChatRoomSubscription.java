@@ -15,6 +15,10 @@ public class ChatRoomSubscription {
     @Reference
     private ChatMessage lastSeenMessage;
 
+    private boolean blocked;
+
+    private boolean muted;
+
     public Profile getUserProfile() {
         return userProfile;
     }
@@ -29,5 +33,21 @@ public class ChatRoomSubscription {
 
     public void setLastSeenMessage(ChatMessage lastSeenMessage) {
         this.lastSeenMessage = lastSeenMessage;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public boolean isMuted() {
+        return muted;
+    }
+
+    public void setMuted(boolean muted) {
+        this.muted = muted;
     }
 }
