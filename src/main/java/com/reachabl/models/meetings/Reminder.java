@@ -2,15 +2,21 @@ package com.reachabl.models.meetings;
 
 import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
-@RedisHash("Reminder")
+
 public class Reminder implements Serializable {
+
+
+    @Serial
+    private static final long serialVersionUID = 63458637468534L;
+
+
     @Id
     private String id;
     private LocalDateTime eventTime;
