@@ -2,6 +2,7 @@ package com.reachabl.models.team;
 
 import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.List;
 
@@ -13,6 +14,17 @@ public class Team {
     private String name;
 
     private List<Profile> members;
+
+    @DBRef
+    public Profile creator;
+
+    public Profile getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Profile creator) {
+        this.creator = creator;
+    }
 
     public String getId() {
         return id;
