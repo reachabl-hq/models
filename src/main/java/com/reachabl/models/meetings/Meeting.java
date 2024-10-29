@@ -7,13 +7,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
 
 @Document("meetings")
-
 public class Meeting {
 
     @Id
@@ -26,8 +23,6 @@ public class Meeting {
     private MeetingType meetingType;
 
     private ZoneId zoneId ;
-
-    private LocalDate time;
 
     private MeetingTime meetingTime;
 
@@ -45,18 +40,23 @@ public class Meeting {
     @JsonProperty(required = false)
     private List<String> files;
 
-    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, LocalDate time, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files) {
+    private String roomCode ;
+
+    public Meeting() {
+    }
+
+    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files,String roomCode ) {
         this.topic = topic;
         this.description = description;
         this.meetingType = meetingType;
         this.zoneId = zoneId;
-        this.time = time;
         this.meetingTime = meetingTime;
         this.creator = creator;
         this.participants = participants;
         this.recurringMeeting = recurringMeeting;
         this.reminder = reminder;
         this.files = files;
+        this.roomCode = roomCode;
     }
 
     public String getId() {
@@ -97,14 +97,6 @@ public class Meeting {
 
     public void setZoneId(ZoneId zoneId) {
         this.zoneId = zoneId;
-    }
-
-    public LocalDate getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDate time) {
-        this.time = time;
     }
 
     public MeetingTime getMeetingTime() {
@@ -153,5 +145,13 @@ public class Meeting {
 
     public void setFiles(List<String> files) {
         this.files = files;
+    }
+
+    public String getRoomCode() {
+        return roomCode;
+    }
+
+    public void setRoomCode(String roomCode) {
+        this.roomCode = roomCode;
     }
 }

@@ -26,6 +26,8 @@ public class ChatMessage {
     @JsonIgnore
     private ChatRoom chatRoom;
 
+    private String attachmentUrl;
+
     public String getId() {
         return id;
     }
@@ -60,5 +62,13 @@ public class ChatMessage {
 
     public LocalDateTime getDate() {
         return LocalDateTime.ofInstant(new ObjectId(id).getDate().toInstant(), ZoneId.systemDefault());
+    }
+
+    public String getAttachmentUrl() {
+        return attachmentUrl;
+    }
+
+    public void setAttachmentUrl(String attachmentUrl) {
+        this.attachmentUrl = attachmentUrl;
     }
 }
