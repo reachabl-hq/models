@@ -2,10 +2,12 @@ package com.reachabl.models.user;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.reachabl.models.plan.Plan;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +29,9 @@ public class User implements UserDetails {
     @Size(max = 120)
     @JsonIgnore
     private String password;
+
+    @DBRef
+    private Plan plan;
 
     public User() {
     }
@@ -94,5 +99,13 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 }

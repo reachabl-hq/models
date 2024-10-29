@@ -9,6 +9,8 @@ public class Plan {
     @Id
     private String id;
 
+    private String name;
+
     private boolean unlimitedMeeting;
 
     private Duration meetingDuration;
@@ -145,5 +147,13 @@ public class Plan {
 
     public void setDefault(boolean aDefault) {
         isDefault = aDefault;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
