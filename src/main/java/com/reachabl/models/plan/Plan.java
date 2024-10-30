@@ -1,8 +1,10 @@
 package com.reachabl.models.plan;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.annotation.Id;
 
 import java.time.Duration;
+import java.util.Map;
 
 public class Plan {
 
@@ -155,5 +157,11 @@ public class Plan {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Map toMap() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+        return objectMapper.convertValue(this, Map.class);
     }
 }
