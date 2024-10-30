@@ -13,6 +13,7 @@ public class Team {
 
     private String name;
 
+    @DBRef
     private List<Profile> members;
 
     @DBRef
