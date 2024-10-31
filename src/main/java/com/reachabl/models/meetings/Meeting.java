@@ -7,10 +7,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 @Document("meetings")
@@ -26,8 +23,6 @@ public class Meeting {
     private MeetingType meetingType;
 
     private ZoneId zoneId ;
-
-    private Date time;
 
     private MeetingTime meetingTime;
 
@@ -50,12 +45,11 @@ public class Meeting {
     public Meeting() {
     }
 
-    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, Date time, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files,String roomCode ) {
+    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files,String roomCode ) {
         this.topic = topic;
         this.description = description;
         this.meetingType = meetingType;
         this.zoneId = zoneId;
-        this.time = time;
         this.meetingTime = meetingTime;
         this.creator = creator;
         this.participants = participants;
@@ -103,14 +97,6 @@ public class Meeting {
 
     public void setZoneId(ZoneId zoneId) {
         this.zoneId = zoneId;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 
     public MeetingTime getMeetingTime() {
