@@ -27,6 +27,8 @@ public class ChatRoom {
 
     private String channelName;
 
+    private boolean direct;
+
     public String getId() {
         return id;
     }
@@ -73,5 +75,13 @@ public class ChatRoom {
 
     public void setChannelName(String channelName) {
         this.channelName = channelName;
+    }
+
+    public boolean isDirect() {
+        return direct;
+    }
+
+    public void setDirect(boolean direct) {
+        this.direct = direct;
     }
 }
