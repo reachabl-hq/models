@@ -59,7 +59,9 @@ public class Meeting {
         this.roomCode = roomCode;
     }
 
+
     public Meeting(Meeting source, LocalDate startDate) {
+        this.id = source.getId();
         this.topic = source.topic;
         this.description = source.description;
         this.meetingType = source.meetingType;
