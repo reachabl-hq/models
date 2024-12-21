@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -32,12 +34,10 @@ public class Meeting {
     @DBRef
     private List<Profile> participants;
 
-    @JsonProperty(required = false)
     private AbstractRecurringMeeting recurringMeeting;
 
     private Duration reminder;
 
-    @JsonProperty(required = false)
     private List<String> files;
 
     private String roomCode ;
@@ -57,6 +57,24 @@ public class Meeting {
         this.reminder = reminder;
         this.files = files;
         this.roomCode = roomCode;
+    }
+
+
+    public Meeting(Meeting source, LocalDate startDate) {
+        this.id = source.getId();
+        this.topic = source.topic;
+        this.description = source.description;
+        this.meetingType = source.meetingType;
+        this.zoneId = source.zoneId;
+        LocalDateTime startTime = startDate.atTime(source.meetingTime.startTime().toLocalTime());
+        LocalDateTime endTime = startDate.atTime(source.meetingTime.endTime().toLocalTime());
+        this.meetingTime = new MeetingTime(startTime, endTime);
+        this.creator = source.creator;
+        this.participants = source.participants;
+        this.recurringMeeting = source.recurringMeeting;
+        this.reminder = source.reminder;
+        this.files = source.files;
+        this.roomCode = source.roomCode;
     }
 
     public String getId() {
