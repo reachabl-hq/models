@@ -6,10 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.List;
 
 @Document("meetings")
@@ -63,11 +60,11 @@ public class Meeting {
     public Meeting(Meeting source, LocalDate startDate) {
         this.id = source.getId();
         this.topic = source.topic;
-        this.description = source.description;
+       this.description = source.description;
         this.meetingType = source.meetingType;
         this.zoneId = source.zoneId;
         LocalDateTime startTime = startDate.atTime(source.meetingTime.startTime().toLocalTime());
-        LocalDateTime endTime = startDate.atTime(source.meetingTime.endTime().toLocalTime());
+        LocalDateTime endTime = startDate.atTime(source.meetingTime.endTime().toLocalTime().equals(LocalTime.MIDNIGHT) ? LocalTime.of(23,59,59) : source.meetingTime.endTime().toLocalTime() );
         this.meetingTime = new MeetingTime(startTime, endTime);
         this.creator = source.creator;
         this.participants = source.participants;
