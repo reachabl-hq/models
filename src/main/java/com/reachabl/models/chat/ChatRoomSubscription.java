@@ -19,6 +19,16 @@ public class ChatRoomSubscription {
 
     private boolean muted;
 
+    private int unreadCount; // New field
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
+
     public Profile getUserProfile() {
         return userProfile;
     }

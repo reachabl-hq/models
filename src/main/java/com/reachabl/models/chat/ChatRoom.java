@@ -1,5 +1,6 @@
 package com.reachabl.models.chat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -28,6 +29,17 @@ public class ChatRoom {
     private String channelName;
 
     private boolean direct;
+
+    @JsonProperty("unreadCount")
+    private int unreadCount;
+
+    public int getUnreadCount() {
+        return unreadCount;
+    }
+
+    public void setUnreadCount(int unreadCount) {
+        this.unreadCount = unreadCount;
+    }
 
     public String getId() {
         return id;
