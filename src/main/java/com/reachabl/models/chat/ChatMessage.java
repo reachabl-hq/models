@@ -26,6 +26,9 @@ public class ChatMessage {
     @JsonIgnore
     private ChatRoom chatRoom;
 
+    @CreatedDate
+    private LocalDateTime date;
+
     private String attachmentUrl;
 
     public String getId() {

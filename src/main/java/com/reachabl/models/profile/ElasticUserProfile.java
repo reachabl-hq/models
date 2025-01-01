@@ -3,8 +3,6 @@ import com.reachabl.models.user_status.UserStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import java.time.LocalDate;
-
 
 @Document(indexName = "profiles")
 public class ElasticUserProfile {
