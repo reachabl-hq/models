@@ -3,10 +3,13 @@ package com.reachabl.models.chat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document()
@@ -32,6 +35,10 @@ public class ChatRoom {
 
     @JsonProperty("unreadCount")
     private int unreadCount;
+
+    @Field("updatedAt")
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     public int getUnreadCount() {
         return unreadCount;
@@ -96,4 +103,14 @@ public class ChatRoom {
     public void setDirect(boolean direct) {
         this.direct = direct;
     }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+
 }
