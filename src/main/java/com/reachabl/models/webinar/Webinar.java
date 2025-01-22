@@ -1,6 +1,6 @@
-package com.reachabl.models.meetings;
+package com.reachabl.models.webinar;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.reachabl.models.profile.Profile;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.*;
 import java.util.List;
 
-@Document("meetings")
-public class Meeting {
+@Document("webinars")
+public class Webinar {
 
     @Id
     private String id;
@@ -19,19 +19,15 @@ public class Meeting {
 
     private String description;
 
-    private MeetingType meetingType;
 
     private ZoneId zoneId ;
 
-    private MeetingTime meetingTime;
+    private LocalDateTime webinarStartTime;
 
     @DBRef
     private Profile creator;
 
-    @DBRef
-    private List<Profile> participants;
-
-    private AbstractRecurringMeeting recurringMeeting;
+    private AbstractRecurringWebinar recurringWebinar;
 
     private Duration reminder;
 
@@ -39,36 +35,29 @@ public class Meeting {
 
     private String roomCode ;
 
-    public Meeting() {
+    public Webinar() {
     }
 
-    public Meeting(String topic, String description, MeetingType meetingType, ZoneId zoneId, MeetingTime meetingTime, Profile creator, List<Profile> participants, AbstractRecurringMeeting recurringMeeting, Duration reminder, List<String> files,String roomCode ) {
+    public Webinar(String topic, String description, ZoneId zoneId,  Profile creator, AbstractRecurringWebinar recurringWebinar, Duration reminder, List<String> files,String roomCode ) {
         this.topic = topic;
         this.description = description;
-        this.meetingType = meetingType;
         this.zoneId = zoneId;
-        this.meetingTime = meetingTime;
         this.creator = creator;
-        this.participants = participants;
-        this.recurringMeeting = recurringMeeting;
+        this.recurringWebinar = recurringWebinar;
         this.reminder = reminder;
         this.files = files;
         this.roomCode = roomCode;
     }
 
 
-    public Meeting(Meeting source, LocalDate startDate) {
+    public Webinar(com.reachabl.models.webinar.Webinar source ,LocalDate webinarStartTime) {
         this.id = source.getId();
         this.topic = source.topic;
         this.description = source.description;
-        this.meetingType = source.meetingType;
         this.zoneId = source.zoneId;
-        LocalDateTime startTime = startDate.atTime(source.meetingTime.startTime().toLocalTime());
-        LocalDateTime endTime = startDate.atTime(source.meetingTime.endTime().toLocalTime().equals(LocalTime.MIDNIGHT) ? LocalTime.of(23,59,59) : source.meetingTime.endTime().toLocalTime() );
-        this.meetingTime = new MeetingTime(startTime, endTime);
+        this.webinarStartTime = webinarStartTime.atTime(source.webinarStartTime.getHour(),source.webinarStartTime.getMinute());
         this.creator = source.creator;
-        this.participants = source.participants;
-        this.recurringMeeting = source.recurringMeeting;
+        this.recurringWebinar = source.recurringWebinar;
         this.reminder = source.reminder;
         this.files = source.files;
         this.roomCode = source.roomCode;
@@ -98,13 +87,7 @@ public class Meeting {
         this.description = description;
     }
 
-    public MeetingType getMeetingType() {
-        return meetingType;
-    }
 
-    public void setMeetingType(MeetingType meetingType) {
-        this.meetingType = meetingType;
-    }
 
     public ZoneId getZoneId() {
         return zoneId;
@@ -114,13 +97,6 @@ public class Meeting {
         this.zoneId = zoneId;
     }
 
-    public MeetingTime getMeetingTime() {
-        return meetingTime;
-    }
-
-    public void setMeetingTime(MeetingTime meetingTime) {
-        this.meetingTime = meetingTime;
-    }
 
     public Profile getCreator() {
         return creator;
@@ -130,21 +106,7 @@ public class Meeting {
         this.creator = creator;
     }
 
-    public List<Profile> getParticipants() {
-        return participants;
-    }
 
-    public void setParticipants(List<Profile> participants) {
-        this.participants = participants;
-    }
-
-    public AbstractRecurringMeeting getRecurringMeeting() {
-        return recurringMeeting;
-    }
-
-    public void setRecurringMeeting(AbstractRecurringMeeting recurringMeeting) {
-        this.recurringMeeting = recurringMeeting;
-    }
 
     public Duration getReminder() {
         return reminder;
@@ -169,4 +131,22 @@ public class Meeting {
     public void setRoomCode(String roomCode) {
         this.roomCode = roomCode;
     }
+
+
+    public LocalDateTime getWebinarStartTime() {
+        return webinarStartTime;
+    }
+
+    public void setWebinarStartTime(LocalDateTime webinarStartTime) {
+        this.webinarStartTime = webinarStartTime;
+    }
+
+    public AbstractRecurringWebinar getRecurringWebinar() {
+        return recurringWebinar;
+    }
+
+    public void setRecurringWebinar(AbstractRecurringWebinar recurringWebinar) {
+        this.recurringWebinar = recurringWebinar;
+    }
 }
+
