@@ -31,6 +31,8 @@ public class ChatMessage {
 
     private String attachmentUrl;
 
+    private String  messageType;
+
     public String getId() {
         return id;
     }
@@ -73,5 +75,13 @@ public class ChatMessage {
 
     public void setAttachmentUrl(String attachmentUrl) {
         this.attachmentUrl = attachmentUrl;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
     }
 }
