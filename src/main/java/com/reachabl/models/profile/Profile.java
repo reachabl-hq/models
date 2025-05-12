@@ -32,8 +32,10 @@ public class Profile {
     @DBRef
     private User user;
 
+    private String organizationId;
+
     public Profile(String firstName, String lastName, LocalDate birthDate,
-                   String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user) {
+                   String email, String phoneNumber, String imageUrl, UserStatus userStatus, User user, String organizationId) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,6 +45,7 @@ public class Profile {
         this.imageUrl = imageUrl;
         this.userStatus = userStatus;
         this.user = user;
+        this.organizationId = organizationId;
     }
 
 
@@ -116,5 +119,13 @@ public class Profile {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 }
