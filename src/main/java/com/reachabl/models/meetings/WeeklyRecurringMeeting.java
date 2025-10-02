@@ -19,4 +19,8 @@ public class WeeklyRecurringMeeting extends AbstractRecurringMeeting {
     public void setRepeatOn(DayOfWeek repeatOn) {
         this.repeatOn = repeatOn;
     }
+    @Override
+    protected LocalDate nextOccurrence(LocalDate current) {
+        return current.plusWeeks(super.getRepeatEvery());
+    }
 }

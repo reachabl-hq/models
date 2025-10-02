@@ -23,4 +23,13 @@ public class MonthlyByDayOfMonthRecurringMeeting extends AbstractRecurringMeetin
     public void setDay(int day) {
         this.day = day;
     }
+
+    @Override
+    protected LocalDate nextOccurrence(LocalDate current) {
+        LocalDate nextMonth = current.plusMonths(super.getRepeatEvery());
+        int day = this.getDay();
+
+        int lastDay = nextMonth.lengthOfMonth();
+        return nextMonth.withDayOfMonth(Math.min(day, lastDay));
+    }
 }
