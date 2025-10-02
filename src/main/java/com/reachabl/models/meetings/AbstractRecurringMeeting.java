@@ -62,4 +62,28 @@ public abstract class AbstractRecurringMeeting {
     public void setAfterTime(int afterTime) {
         this.afterTime = afterTime;
     }
+
+    /**
+     * Calculate the next occurrence given the current date.
+     */
+    protected abstract LocalDate nextOccurrence(LocalDate current);
+
+    /**
+     * Determine the calculated end date.
+     * Either the provided endDate, or the last occurrence after 'afterTime'.
+     */
+    public LocalDate calculateEndDate(LocalDate startDate) {
+        LocalDate occurrence = startDate;
+
+        // If explicit endDate is provided, use whichever comes first
+        if (endDate != null) {
+            return endDate;
+        }
+
+        // Otherwise, calculate using afterTime
+        for (int i = 1; i < afterTime; i++) {
+            occurrence = nextOccurrence(occurrence);
+        }
+        return occurrence;
+    }
 }

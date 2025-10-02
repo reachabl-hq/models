@@ -41,4 +41,17 @@ public class MonthlyByDayOfWeekRecurringMeeting extends AbstractRecurringMeeting
     public void setIndex(int index) {
         this.index = index;
     }
+
+    @Override
+    protected LocalDate nextOccurrence(LocalDate current) {
+        LocalDate nextMonth = current.plusMonths(super.getRepeatEvery()).withDayOfMonth(1);
+        MonthlyByDayOfWeekRecurringMeeting self = this;
+
+        if (self.getIndex() >= 0) {
+            LocalDate firstDow = nextMonth.with(java.time.temporal.TemporalAdjusters.firstInMonth(self.getDayOfWeek()));
+            return firstDow.plusWeeks(self.getIndex());
+        } else {
+            return nextMonth.with(java.time.temporal.TemporalAdjusters.lastInMonth(self.getDayOfWeek()));
+        }
+    }
 }
