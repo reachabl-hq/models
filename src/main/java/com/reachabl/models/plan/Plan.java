@@ -21,7 +21,7 @@ public class Plan {
 
     private boolean instantMeetings;
 
-    private boolean MessagingAndChat;
+    private boolean messagingAndChat;
 
     private boolean accessToMeetingAndWebinarGPT;
 
@@ -80,11 +80,11 @@ public class Plan {
     }
 
     public boolean isMessagingAndChat() {
-        return MessagingAndChat;
+        return messagingAndChat;
     }
 
     public void setMessagingAndChat(boolean messagingAndChat) {
-        MessagingAndChat = messagingAndChat;
+        this.messagingAndChat = messagingAndChat;
     }
 
     public boolean isAccessToMeetingAndWebinarGPT() {
